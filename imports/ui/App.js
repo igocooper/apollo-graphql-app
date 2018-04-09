@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import gql from 'graphql-tag' // to create graphql queries
 import { graphql } from 'react-apollo'
+import { link } from 'fs';
 
-const App = (props) => (
-  <div>
-    <h1>{props.data.hi}</h1>
-    <p>I'm Oleg Lytvyn, I'm {props.data.age} old, and I'm learning development for a year and half already. 👍</p>
-  </div>
+const App = ({ data }) => (
+  <Fragment>
+    <h1>{data.hi}</h1>
+    <ul>
+      {!data.loading && data.resolutions.map(resolution => (
+        <li key={resolution._id}>
+          {resolution.name}
+        </li>
+      )
+      )}
+    </ul>
+  </Fragment>
 )
 
 const hiQuery = gql`
 {
-  hi,
-  age
+  hi
+  resolutions {
+    _id
+    name
+  }
 }
 `;
 

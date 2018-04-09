@@ -7,7 +7,8 @@ const testSchema = `
 type Query {
     hi: String,
     age: Int,
-    greet: String
+    greet: String,
+    resolutions: [Resolution]
 }
 `
 
@@ -26,6 +27,19 @@ const resolvers = {
         },
         age() {
             return 26
+        },
+        resolutions() {
+            return [
+                {
+                    _id: "asfsagasgasg",
+                    name: "Get stuff done 💰"
+                },
+                {
+                    _id: "ddddddLo",
+                    name: "Lose some weight 🏋🏾"
+                },
+
+            ]
         }
     }
 };
