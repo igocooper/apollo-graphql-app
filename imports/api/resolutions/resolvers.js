@@ -10,5 +10,13 @@ export default {
         resolutions() {
             return Resolutions.find({}).fetch();
         }
+    },
+
+    Mutation: {
+        // const resolutionId = createResolution(name) {
+        //     Resolutions.insert({
+        //             name: name
+        //         })
+        // }
     }
 };
