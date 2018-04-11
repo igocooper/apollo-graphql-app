@@ -4,6 +4,8 @@ import { graphql } from 'react-apollo'
 import { link } from 'fs';
 
 import ResolutionFrom from './ResolutionForm';
+import EditResolutionButton from './EditResolutionButton';
+import RemoveResolutionButton from './RemoveResolutionButton';
 
 const App = ({ data }) => (
   <Fragment>
@@ -13,6 +15,15 @@ const App = ({ data }) => (
       {!data.loading && data.resolutions.map(resolution => (
         <li key={resolution._id}>
           {resolution.name}
+          <EditResolutionButton 
+            id={resolution._id} 
+            name={resolution.name} 
+            refetch={data.refetch}
+          />
+          <RemoveResolutionButton 
+            name={resolution.name} 
+            refetch={data.refetch} 
+          />
         </li>
       )
       )}

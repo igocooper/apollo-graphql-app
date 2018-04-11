@@ -8,5 +8,7 @@ type Resolution {
 }
 
 type Mutation {
-    createResolution(name: String!): Resolution
+    createResolution(name: String!): Resolution,
+    editResolution(query: String!, name: String!): Resolution,
+    removeResolution(name: String!): Resolution
 }
