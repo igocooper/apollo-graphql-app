@@ -13,10 +13,15 @@ export default {
     },
 
     Mutation: {
-        // const resolutionId = createResolution(name) {
-        //     Resolutions.insert({
-        //             name: name
-        //         })
-        // }
+        createResolution(obj, args, context) {
+            const { name } = args;
+            console.log(name);
+            // insert data and get it id into variable
+            const resolutionId =  Resolutions.insert({
+                name: name
+            });
+            // return Resolution found by that id
+            return Resolutions.findOne(resolutionId);
+        }
     }
 };

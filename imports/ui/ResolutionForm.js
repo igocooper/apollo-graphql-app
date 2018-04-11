@@ -3,14 +3,30 @@ import gql from 'graphql-tag' // to create graphql queries
 import { graphql } from 'react-apollo'
 
 const createResolution = gql`
-    mutation createResolution {
-       _id
+    mutation createResolution($name: String!) {
+       createResolution(name: $name) {
+           _id
+       }
     }
 `
 class ResolutionForm extends Component {
 
   submitForm = () => {
     console.log(this.name.value);
+    // pass in a variable into a graphQL mutation
+    this.props
+        .createResolution({
+            variables: {
+                name: this.name.value
+            }
+        })
+        .then( ({data}) => {
+            // do stuff with the data when promise is resolved
+            this.props.refetch();
+        })
+        .catch( (err) => {
+        console.error(err);
+        }) 
   };
 
   render() {

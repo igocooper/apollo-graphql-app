@@ -8,7 +8,7 @@ import ResolutionFrom from './ResolutionForm';
 const App = ({ data }) => (
   <Fragment>
     <h1>{data.hi}</h1>
-    <ResolutionFrom/>
+    <ResolutionFrom refetch={data.refetch}/>
     <ul>
       {!data.loading && data.resolutions.map(resolution => (
         <li key={resolution._id}>
