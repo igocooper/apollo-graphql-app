@@ -4,13 +4,10 @@ import merge from 'lodash/merge';
 
 import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';
 import ResolutionsResolvers from '../../api/resolutions/resolvers.js';
-// hi s
-
+// hi 
 const testSchema = `
 type Query {
     hi: String,
-    age: Int,
-    greet: String,
     resolutions: [Resolution]
 }
 `

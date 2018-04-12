@@ -15,7 +15,6 @@ export default {
     Mutation: {
         createResolution(obj, args, context) {
             const { name } = args;
-            console.log(name);
             // insert data and get it id into variable
             const resolutionId =  Resolutions.insert({
                 name: name

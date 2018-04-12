@@ -7,8 +7,7 @@ import ResolutionFrom from './ResolutionForm';
 
 const App = ({ data }) => (
   <Fragment>
-    <h1>{data.hi}</h1>
-    <ResolutionFrom refetch={data.refetch}/>
+    <ResolutionFrom/>
     <ul>
       {!data.loading && data.resolutions.map(resolution => (
         <li key={resolution._id}>
@@ -20,9 +19,8 @@ const App = ({ data }) => (
   </Fragment>
 )
 
-const hiQuery = gql`
-{
-  hi
+const ResolutionsQuery = gql`
+query Resolutions {
   resolutions {
     _id
     name
@@ -30,4 +28,19 @@ const hiQuery = gql`
 }
 `;
 
-export default graphql(hiQuery)(App);
+export default graphql(ResolutionsQuery)(App);
+
+/* we could destructure data into variables like this: 
+
+export default graphql(ResolutionsQuery, {
+  props: ({ data }) => ({ ...data }) 
+})(App)
+
+So in our app component we then can get props by its name: 
+
+const App = ({ loading, resolutions } => (
+  <div>
+    // class return
+  </div>
+)
+*/
