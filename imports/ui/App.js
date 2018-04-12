@@ -3,11 +3,15 @@ import gql from 'graphql-tag' // to create graphql queries
 import { graphql } from 'react-apollo'
 import { link } from 'fs';
 
-import ResolutionFrom from './ResolutionForm';
+import ResolutionForm from './ResolutionForm';
+import RegisterForm from './RegisterForm';
+import LoginForm from './LoginForm';
 
 const App = ({ data }) => (
   <Fragment>
-    <ResolutionFrom/>
+    <RegisterForm/>
+    <LoginForm/>
+    {/* <ResolutionForm/>
     <ul>
       {!data.loading && data.resolutions.map(resolution => (
         <li key={resolution._id}>
@@ -15,7 +19,7 @@ const App = ({ data }) => (
         </li>
       )
       )}
-    </ul>
+    </ul> */}
   </Fragment>
 )
 
