@@ -10,7 +10,7 @@ import RemoveResolutionButton from './RemoveResolutionButton';
 const App = ({ data }) => (
   <Fragment>
     <h1>{data.hi}</h1>
-    <ResolutionFrom refetch={data.refetch}/>
+    <ResolutionFrom />
     <ul>
       {!data.loading && data.resolutions.map(resolution => (
         <li key={resolution._id}>
@@ -18,11 +18,9 @@ const App = ({ data }) => (
           <EditResolutionButton 
             id={resolution._id} 
             name={resolution.name} 
-            refetch={data.refetch}
           />
           <RemoveResolutionButton 
             name={resolution.name} 
-            refetch={data.refetch} 
           />
         </li>
       )
@@ -31,14 +29,13 @@ const App = ({ data }) => (
   </Fragment>
 )
 
-const hiQuery = gql`
-{
-  hi
-  resolutions {
-    _id
-    name
-  }
+const resolutionsQuery = gql`
+query Resolutions {
+    resolutions {
+      _id
+      name
+    }
 }
 `;
 
-export default graphql(hiQuery)(App);
+export default graphql(resolutionsQuery)(App);

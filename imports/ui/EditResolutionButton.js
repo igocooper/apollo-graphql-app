@@ -24,7 +24,7 @@ class EditResolutionButton extends Component {
         })
         .then( ({data}) => {
             // fetch top update App component
-            this.props.refetch();
+            // this.props.refetch(); refetch is now done through mutatation options
         })
         .catch( (err) => {
             console.error(err);
@@ -41,5 +41,8 @@ class EditResolutionButton extends Component {
 }
 
 export default graphql(editResolution,{
-    name: 'editResolution'
+    name: 'editResolution',
+    options: {
+        refetchQueries: ["Resolutions"]
+    }
 })(EditResolutionButton);

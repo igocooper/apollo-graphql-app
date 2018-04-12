@@ -23,7 +23,7 @@ class RemoveResolutionButton extends Component {
         })
         .then( ({data}) => {
             // fetch top update App component
-            this.props.refetch();
+            // this.props.refetch(); refetch is now done through mutatation options
         })
         .catch( (err) => {
             console.error(err);
@@ -40,5 +40,8 @@ class RemoveResolutionButton extends Component {
 }
 
 export default graphql(removeResolution,{
-    name: 'removeResolution'
+    name: 'removeResolution',
+    options: {
+        refetchQueries: ["Resolutions"]
+    }
 })(RemoveResolutionButton);
