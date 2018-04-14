@@ -18,3 +18,4 @@ shell-server@0.3.1            # Server-side component of the `meteor shell` comm
 
 apollo                          #apolo library for server
 accounts-password               #meteor account package
+swydo:graphql                   #lib recommend to auto refresh server on .graphql file changes

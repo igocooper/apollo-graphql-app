@@ -1,4 +1,5 @@
 import Resolutions from './Resolutions';
+import Goals from '../goals/goals';
 
 // dirty way to insert some thing into Mongo Collection quickly
 // Resolutions.insert({
@@ -12,6 +13,16 @@ export default {
                 userId
             }).fetch();
         }
+    },
+
+    Resolution: {
+      goals: (resolution) => {
+        const goals = Goals.find({
+            resolutionId: resolution._id
+        }).fetch();
+        
+        return goals
+      }  
     },
 
     Mutation: {
