@@ -20,11 +20,12 @@ class GoalForm extends Component {
                 resolutionId: this.props.resolutionId
             }
         })
-        .then( ({data}) => {
-            // do stuff with the data when promise is resolved
+        .then( () => {
+            // reset input
+            this.name.value = ''
         })
         .catch( (err) => {
-        console.error(err);
+        if (error) console.error(err);
         }) 
   };
 
@@ -39,5 +40,8 @@ class GoalForm extends Component {
 }
 
 export default graphql(createGoal, {
-    name: 'createGoal'
+    name: 'createGoal',
+    options: {
+        refetchQueries : ["Resolutions"]
+    }
 })(GoalForm);

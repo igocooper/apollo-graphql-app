@@ -8,6 +8,7 @@ import RegisterForm from './RegisterForm';
 import GoalsForm from './GoalForm';
 import ResolutionForm from './ResolutionForm';
 import LoginForm from './LoginForm';
+import Goal from './resolutions/Goal';
 
 // data comes from grapql HOC component with all query data.
 const App = ({ data, client }) => (
@@ -31,7 +32,11 @@ const App = ({ data, client }) => (
       {!data.loading && data.resolutions.map(resolution => (
         <li key={resolution._id}>
           {resolution.name}
+          {resolution.goals && resolution.goals.map(goal => (
+            <Goal goal={goal} key={goal._id} />
+          ))}
           <GoalsForm resolutionId={resolution._id}/>
+
         </li>
       )
       )}
@@ -44,6 +49,10 @@ query Resolutions {
   resolutions {
     _id
     name
+    goals {
+      _id
+      name
+    }
   },
   user {
     _id
