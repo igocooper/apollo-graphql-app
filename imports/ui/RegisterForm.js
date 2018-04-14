@@ -5,11 +5,17 @@ import { Accounts } from 'meteor/accounts-base';
 class RegisterForm extends Component {
     registerUser = (e) => {
         e.preventDefault();
+
+        const { client } = this.props;
         Accounts.createUser({
             email: this.email.value,
             password: this.password.value
         }, (error) => {
-           console.error(error);     
+           if(error) return console.error(error);  
+
+           if (!error) {
+            client.resetStore();
+           }
         });
     }
 

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { format } from 'url';
 
+
 class LoginForm extends Component {
     login = (e) => {
         e.preventDefault();
+        const { client } = this.props;
+        
         Meteor.loginWithPassword(this.email.value, this.password.value, (error) => {
-           console.error(error);     
+           if (error) return console.error(error);     
+           client.resetStore();
         });
     }
 

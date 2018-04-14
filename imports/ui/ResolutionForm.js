@@ -12,7 +12,6 @@ const createResolution = gql`
 class ResolutionForm extends Component {
 
   submitForm = () => {
-    console.log(this.name.value);
     // pass in a variable into a graphQL mutation
     this.props
         .createResolution({
