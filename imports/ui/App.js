@@ -8,6 +8,7 @@ import ResolutionForm from './ResolutionForm';
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
 
+// data comes from grapql HOC component with all query data.
 const App = ({ data, client }) => (
   <Fragment>
     {!data.loading && data.user._id ? (

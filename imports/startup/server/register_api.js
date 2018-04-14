@@ -10,31 +10,14 @@ import UsersResolvers from '../../api/users/resolvers.js';
 
 //hi
 
-const testSchema = `
-type Query {
-    hi: String,
-    resolutions: [Resolution],
-    user: User
-}
-`
-
 const typeDefs = [
-    testSchema,
     ResolutionsSchema,
     UsersSchema
 ];
 
-const testResolvers = {
-    Query: {
-        hi() {
-            return 'Hi level up tuts'
-        }
-    }
-};
 
 // combine resolvers
 const resolvers = merge(
-    testResolvers,
     ResolutionsResolvers,
     UsersResolvers
 );
