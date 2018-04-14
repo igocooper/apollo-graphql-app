@@ -4,8 +4,9 @@ import { graphql } from 'react-apollo'
 import { link } from 'fs';
 import { withApollo } from 'react-apollo';
 
-import ResolutionForm from './ResolutionForm';
 import RegisterForm from './RegisterForm';
+import GoalsForm from './GoalForm';
+import ResolutionForm from './ResolutionForm';
 import LoginForm from './LoginForm';
 
 // data comes from grapql HOC component with all query data.
@@ -30,6 +31,7 @@ const App = ({ data, client }) => (
       {!data.loading && data.resolutions.map(resolution => (
         <li key={resolution._id}>
           {resolution.name}
+          <GoalsForm resolutionId={resolution._id}/>
         </li>
       )
       )}
