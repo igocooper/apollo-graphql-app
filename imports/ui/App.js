@@ -31,7 +31,11 @@ const App = ({ data, client }) => (
     <ul>
       {!data.loading && data.resolutions.map(resolution => (
         <ul key={resolution._id}>
+          <span style={{
+          textDecoration: resolution.completed ? 'line-through' : 'none'
+          }}>
           {resolution.name}
+          </span>
           {resolution.goals && resolution.goals.map(goal => (
             <Goal goal={goal} key={goal._id} />
           ))}
@@ -49,6 +53,7 @@ query Resolutions {
   resolutions {
     _id
     name
+    completed
     goals {
       _id
       name
