@@ -30,14 +30,14 @@ const App = ({ data, client }) => (
     <ResolutionForm/>
     <ul>
       {!data.loading && data.resolutions.map(resolution => (
-        <li key={resolution._id}>
+        <ul key={resolution._id}>
           {resolution.name}
           {resolution.goals && resolution.goals.map(goal => (
             <Goal goal={goal} key={goal._id} />
           ))}
           <GoalsForm resolutionId={resolution._id}/>
 
-        </li>
+        </ul>
       )
       )}
     </ul>
@@ -52,6 +52,7 @@ query Resolutions {
     goals {
       _id
       name
+      completed
     }
   },
   user {

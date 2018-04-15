@@ -12,6 +12,15 @@ export default {
             });
             // return Resolution found by that id
             return Goals.findOne(goalId);
+        },
+        toggleGoal(obj, { _id }) {
+            const goal = Goals.findOne(_id);
+            Goals.update(_id, {
+                $set: {
+                    completed: !goal.completed
+                }
+            });
+            return Goals.findOne(goal._id);
         }
     }
 };
