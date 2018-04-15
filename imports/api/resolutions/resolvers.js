@@ -25,11 +25,15 @@ export default {
       },
       completed: (resolution) => {
         const goals = Goals.find({
-            resolutionId: resolution._id,
-            completed: false
+            resolutionId: resolution._id
         }).fetch();
+        const resolutionIsCompleted = false;
 
-        return !goals.length;
+        if (goals.length) {
+            resolutonIsCompleted = goals.every(goal => goal.completed);
+        } 
+    
+        return resolutionIsCompleted
       } 
     },
 
@@ -37,13 +41,17 @@ export default {
         createResolution(obj, args, context) {
             const { name } = args;
             const { userId } = context;
-            // insert data and get it id into variable
-            const resolutionId =  Resolutions.insert({
-                name: name,
-                userId
-            });
-            // return Resolution found by that id
-            return Resolutions.findOne(resolutionId);
+            if (userId) {
+                // insert data and get it id into variable
+                const resolutionId =  Resolutions.insert({
+                    name: name,
+                    userId
+                });
+
+                // return Resolution found by that id
+                return Resolutions.findOne(resolutionId);
+            }
+            throw new Error('Unauthorized request. Please login first.')  
         }
     }
 };

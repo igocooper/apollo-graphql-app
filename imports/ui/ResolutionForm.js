@@ -10,6 +10,9 @@ const createResolution = gql`
     }
 `
 class ResolutionForm extends Component {
+  state = {
+      error: false
+  }
 
   submitForm = () => {
     // pass in a variable into a graphQL mutation
@@ -23,13 +26,17 @@ class ResolutionForm extends Component {
             // do stuff with the data when promise is resolved
         })
         .catch( (err) => {
-        console.error(err);
+            console.error(err);
+            this.setState({
+                error: err.message
+            });
         }) 
   };
 
   render() {
     return (
       <div>
+          {this.state.error && <p style={{color: 'red'}}>{this.state.error}</p>}
         <input type="text" ref={(input) => (this.name = input)}/>
         <button onClick={this.submitForm}>Submit</button>
       </div>
